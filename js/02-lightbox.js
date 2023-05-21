@@ -8,7 +8,7 @@ document.querySelector(".gallery").insertAdjacentHTML('afterbegin', listLayout)
 document.querySelectorAll(".gallery__link").forEach(element => {
    element.addEventListener("click", (e)=>{
     e.preventDefault();
-    let lightbox = new SimpleLightbox(element, {captionsData: "alt"})
+    let lightbox = new SimpleLightbox(element, {captionDelay: 250,captionsData: "alt"})
     lightbox.open()
    }) 
 }); 
