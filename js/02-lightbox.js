@@ -1,14 +1,14 @@
 import { galleryItems } from './gallery-items.js';
 // Change code below this line
-let listLayout = "";
-for (let i = 0; i < galleryItems.length; i++) {
-    listLayout += `<li><a class="gallery__link" href="${galleryItems[i].original}"><img class="gallery__image" src="${galleryItems[i].preview}" alt="${galleryItems[i].description}"></li>`;
+const generateMarkup = (list) => {
+    return list.map(element => `<li><a class="gallery__link" href="${element.original}"><img class="gallery__image" src="${element.preview}" alt="${element.description}"></li>`).join("")
 }
-document.querySelector(".gallery").insertAdjacentHTML('afterbegin', listLayout)
-document.querySelectorAll(".gallery__link").forEach(element => {
-   element.addEventListener("click", (e)=>{
+let gallery = document.querySelector(".gallery")
+gallery.insertAdjacentHTML("afterbegin", generateMarkup(galleryItems))
+const handleClick = (e) => {
     e.preventDefault();
-    let lightbox = new SimpleLightbox(element, {captionDelay: 250,captionsData: "alt"})
+    let lightbox = new SimpleLightbox(e.target.parentElement, {captionDelay: 250, captionsData: "alt"})
     lightbox.open()
-   }) 
-}); 
+
+}
+gallery.addEventListener("click", handleClick)
