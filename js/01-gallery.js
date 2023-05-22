@@ -6,6 +6,9 @@ const generateMarkup = (list) => {
 let gallery = document.querySelector(".gallery")
 gallery.insertAdjacentHTML("afterbegin", generateMarkup(galleryItems))
 const handleClick = (e) => {
+    if (e.target.nodeName === "UL"){
+       return
+    }
     e.preventDefault();
     const html = `<img width="1400" height="900" src="${e.target.getAttribute("data-source")}">`
     basicLightbox.create(html).show()
